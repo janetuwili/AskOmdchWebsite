@@ -4,6 +4,7 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class UpdateCartTest extends BaseTest {
@@ -12,8 +13,12 @@ public class UpdateCartTest extends BaseTest {
        var addToCartPage = homePage.clickAddToCart();
        addToCartPage.clickAddToCart();
        var updateCartPage =addToCartPage.clickViewCart();
-        String updatedCartSubTotal = updateCartPage.getUpdatedCartSubTotal(2);
-        Assert.assertNotEquals(updatedCartSubTotal,updateCartPage.getSubTotal(),"cart not updated");
+       //updateCartPage.setQuantity(2);
+       updateCartPage.clickUpdateCart();
+        //String subTotal = updateCartPage.getSubTotal();
+        assertEquals(updateCartPage.getSubTotal(),"$45.00","available");
+
+        assertTrue(updateCartPage.getUpdatedSubTotal(7),"not updated");
 
 
     }

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CartPage {
     private WebDriver driver;
     private WebDriverWait wait;
-    private By quantity = By.cssSelector("input[name='cart[a58149d355f02887dfbe55ebb2b64ba3][qty]']");
+    private By quantity = By.cssSelector("input[title='Qty']");
     private By updateButton = By.cssSelector("button[name='update_cart']");
     private By subTotal = By.cssSelector("td.product-subtotal");
 
@@ -31,14 +31,11 @@ public class CartPage {
     public String getSubTotal(){
        return wait.until(ExpectedConditions.visibilityOfElementLocated(subTotal)).getText();
     }
-    public String getUpdatedCartSubTotal(int newQty){
+    public boolean getUpdatedSubTotal(int newQty){
         setQuantity( newQty);
         clickUpdateCart();
-        return getSubTotal();
+        return true;
 
 
     }
-
-
-
 }
